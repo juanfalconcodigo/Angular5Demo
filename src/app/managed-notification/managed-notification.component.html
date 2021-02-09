@@ -1,0 +1,27 @@
+<section class="managed-notification-container">
+    <div class="managed-notification-container__section managed-notification-container__section--header">
+        <div class="managed-notification-container__header">
+            <h2>Custom Notifications ?</h2>
+            <ul class="managed-notification-container__list">
+                <li class="managed-notification-container__route"><a [routerLink]="['rules']" class="not-underline" [routerLinkActive]="['route-selected']">RULES</a></li>
+                <li class="managed-notification-container__route"><a [routerLink]="['addresses']" class="not-underline" [routerLinkActive]="['route-selected']">ADDRESSES</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="managed-notification-container__section managed-notification-container__section--navbar">
+        <ul class="managed-notification-container__navbar">
+            <li class="managed-notification-container__navbar-item">All <span>0</span></li>
+            <li class="managed-notification-container__navbar-item">Alarm <span>0</span></li>
+            <li class="managed-notification-container__navbar-item">Repair <span>0</span></li>
+            <li class="managed-notification-container__navbar-item">Order <span>0</span></li>
+            <li class="managed-notification-container__navbar-item">Circuit Maintenance <span>0</span></li>
+            <li class="managed-notification-container__navbar-item">Billing <span>0</span></li>
+        </ul>
+    </div>
+    <div class="managed-notification-container__section managed-notification-container__section--router-outlet">
+        <div class="managed-notification-container__router-outlet">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</section>

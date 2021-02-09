@@ -1,0 +1,13 @@
+<div class="list-managed-notification-container">
+    <h3>Notification Rules</h3>
+
+    <select [(ngModel)]="selectRoute" (change)="redirectRoute()">
+        <option hidden selected>Define Rule</option>
+        <option value="alarm" >Alarm</option>
+        <option value="circuit">Circuit Maintance</option>
+        <option value="repair">Repair</option>
+        <option value="order">Order</option>
+    </select>
+
+    <p (click)="redirectRouteTwo()">Ir</p>
+</div>
