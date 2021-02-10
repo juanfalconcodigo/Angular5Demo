@@ -1,3 +1,144 @@
-<p>
-    create create works!
-</p>
+<section class="create-managed-notification-container">
+    <h3>Define Order Rule ?</h3>
+    <h5>* Indicates required field</h5>
+
+
+    <h5>Select a template to define an order rule</h5>
+    <div class="create-managed-notification-container__template">
+        <label for="template">* Rule Template :</label>
+        <select name="template" [(ngModel)]="rule_template" id="template">
+            <option value="product">Products</option>
+            <option value="solution">Solutions</option>
+        </select>
+    </div>
+
+    <div class="create-managed-notification-container__name-description">
+        <div>Rule Name/Description</div>
+        <div>
+            <div>
+                <label for="rule_name">* Rule Name:</label>
+                <input type="text" [(ngModel)]="rule_name" id="rule_name">
+                <span>(25 Characters Maximum)</span>
+            </div>
+            <div>
+                <label for="rule_description">Rule Description</label>
+                <input type="text" [(ngModel)]="rule_description" id="rule_description">
+                <span>50 Characters Maximum)</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="create-managed-notification-container__conditions">
+        <div>Rule Condition</div>
+
+        <div>
+            <p>Tell is wich orders and which statuses should trigger a notification.</p>
+
+            <h4>*List of Orders</h4>
+            <div>
+                <input type="radio" name="rule_order_list_all" id="rule_order_list_all" value="all" [(ngModel)]="rule_order_list">
+                <label for="rule_order_list_all">All of Orders</label>
+            </div>
+            <div>
+                <input type="radio" name="rule_order_list_some" id="rule_order_list_some" value="some" [(ngModel)]="rule_order_list">
+                <label for="rule_order_list_some">Specific Orders Only</label>
+            </div>
+            <div *ngIf="rule_order_list==='some'">
+                <h4>*Order Number</h4>
+                <input type="text" [(ngModel)]="orders_number">
+            </div>
+
+            <h4>*List of Orders</h4>
+            <div>
+                <div>
+                    <input type="radio" name="rule_statuses_all" id="rule_statuses_all" value="statuses_all" [(ngModel)]="rule_statuses_list">
+                    <label for="rule_statuses_all">All product statuses</label>
+                </div>
+                <div>
+                    <input type="radio" name="rule_statuses_only" id="rule_statuses_only" value="statuses_only" [(ngModel)]="rule_statuses_list">
+                    <label for="rule_statuses_only">Specific statuses only</label>
+                </div>
+
+                <div class="dual-select" *ngIf="rule_statuses_list==='statuses_only'">
+                    <div class="dual-select__left">
+
+                        <ul class="dual-select__items">
+                            <li *ngFor="let contact of unselectedContacts" (click)="togglePendingSelection( contact )" (dblclick)="addToSelectedContacts( contact )" class="dual-select__item" [class.dual-select__item--selected]="pendingSelection[ contact.id ]">
+
+                                <div class="contact">
+                                    <div class="contact__name">
+                                        {{ contact.name }}
+                                    </div>
+                                    <div class="contact__email">
+                                        {{ contact.email }}
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="dual-select__controls">
+                        <button (click)="addToSelectedContacts()" class="dual-select__control">
+                            &#10503;
+                        </button>
+                        <button (click)="removeFromSelectedContacts()" class="dual-select__control">
+                            &#10502;
+                        </button>
+                    </div>
+                    <div class="dual-select__right">
+
+                        <ul class="dual-select__items">
+                            <li *ngFor="let contact of selectedContacts" (click)="togglePendingSelection( contact )" (dblclick)="removeFromSelectedContacts( contact )" class="dual-select__item dual-select__item--new" [class.dual-select__item--selected]="pendingSelection[ contact.id ]">
+
+                                <div class="contact">
+                                    <div class="contact__name">
+                                        {{ contact.name }}
+                                    </div>
+                                    <div class="contact__email">
+                                        {{ contact.email }}
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <p *ngIf="rule_statuses_list==='statuses_only'" class="note">
+                    You have <strong>{{ selectedContacts.length }} of {{ contacts.length }}</strong> contacts selected.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="create-managed-notification-container__emails">
+        <div>Notification Address</div>
+        <div>
+            <p>Select or specify notification address(es) below</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Notification Address Name</th>
+                        <th>Email</th>
+                        <th>Schedule</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>test name</td>
+                        <td>test@gmail.com</td>
+                        <td>sechude test</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="create-managed-notification-container__actions">
+        <button style="display: inline-block;height: auto;margin-right:10px;padding: 20px;text-align: center;" (click)="quit()">Quit</button>
+        <button style="display: inline-block;height: auto;margin-right:10px;padding: 20px;text-align: center;" (click)="sendDataRegister()">Submit</button>
+    </div>
+
+</section>
