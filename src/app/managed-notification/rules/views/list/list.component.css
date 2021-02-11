@@ -2,3 +2,20 @@
     width: 100%;
     height: auto;
 }
+
+.list-managed-notification-container__table {
+    width: 100%;
+    height: auto;
+}
+
+
+/* estos estan asi pero despues me los vuelo */
+
+.list-managed-notification-container__table table {
+    width: 100%;
+    height: auto;
+}
+
+.list-managed-notification-container__table tbody td {
+    text-align: center;
+}

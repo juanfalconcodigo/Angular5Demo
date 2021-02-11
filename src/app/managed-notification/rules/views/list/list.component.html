@@ -9,5 +9,30 @@
         <option value="order">Order</option>
     </select>
 
+    <div class="list-managed-notification-container__table">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Rule type</th>
+                    <th>Rule Name</th>
+                    <th>Rule description</th>
+                    <th>Last Updated</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of dataFake">
+                    <td>{{data.rule_type}}</td>
+                    <td><a [routerLink]="['../view',data.id]" style="text-decoration: none;color:cornflowerblue;">{{data.rule_name}}</a></td>
+                    <td>{{data.rule_description}}</td>
+                    <td>{{data.last_updated}}</td>
+                    <td>{{data.status}} <a [routerLink]="['../update',data.id]" style="text-decoration: none;">🖋</a> <span style="cursor: pointer;">❌</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
     <p (click)="redirectRouteTwo()">Ir</p>
 </div>

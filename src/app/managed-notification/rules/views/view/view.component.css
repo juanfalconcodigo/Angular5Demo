@@ -1,0 +1,45 @@
+.view-managed-notification-container {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+}
+
+.view-managed-notification-container__name-description {
+    border: 1px black solid;
+    margin: 10px 0px;
+}
+
+.view-managed-notification-container__condition {
+    border: 1px black solid;
+    margin: 10px 0px;
+}
+
+.view-managed-notification-container__history {
+    border: 1px black solid;
+    margin: 10px 0px;
+}
+
+.view-managed-notification-container__notification {
+    border: 1px black solid;
+    margin: 10px 0px;
+}
+
+.view-managed-notification-container__notification table {
+    width: 100%;
+    height: auto;
+}
+
+.view-managed-notification-container__notification tbody td {
+    text-align: center;
+}
+
+.view-managed-notification-container__actions {
+    width: 100%;
+    height: auto;
+    margin: 10px 0px;
+}
+
+.view-managed-notification-container__actions button {
+    display: inline-block;
+    padding: 10px 15px;
+}

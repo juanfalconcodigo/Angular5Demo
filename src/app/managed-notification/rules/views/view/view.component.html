@@ -1,0 +1,59 @@
+<div class="view-managed-notification-container">
+    <h3>View Billing Rule</h3>
+    <div class="view-managed-notification-container__name-description">
+        <div>Rule Name/Description</div>
+        <div>
+            <p>Rule Name:{{dataFake.rule_name}}</p>
+            <p>Rule Description: {{dataFake.description}}</p>
+            <p>Status: {{(dataFake.status==='Y')?'Enabled':'Disabled'}}</p>
+        </div>
+    </div>
+
+    <div class="view-managed-notification-container__condition">
+        <div>Rule Condition</div>
+        <div>
+            <p>Send notification when new invoice is available online</p>
+        </div>
+    </div>
+
+
+    <div class="view-managed-notification-container__history">
+        <div>Rule History</div>
+        <div>
+            <p>Last Updated:{{dataFake.modified_date | date:'shortDate'}}</p>
+            <p>Created: {{dataFake.created_date | date:'shortDate'}}</p>
+        </div>
+    </div>
+
+
+    <div class="view-managed-notification-container__notification">
+        <div>Notification Address</div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Notification Address Name</th>
+                        <th>E-Mail</th>
+                        <th>Schedule</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="users && users.length > 0; else elseBlock">
+                    <tr *ngFor="let user of users;let i=index;">
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.schedule}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <ng-template #elseBlock>No record found</ng-template>
+
+    <div class="view-managed-notification-container__actions">
+        <button [routerLink]="['../../list']" style="cursor: pointer;background-color: whitesmoke;color: black;outline: none;border: none;">Quit</button>
+        <button [routerLink]="['../../update',dataFake.cnp_rule_oid]" style="cursor: pointer;background-color: whitesmoke;color: black;outline: none;border: none;">Edit Rule</button>
+        <button (click)="disableRule()" style="cursor: pointer;background-color: red;color: white;outline: none;border: none;">Disabled Rule</button>
+    </div>
+
+
+</div>

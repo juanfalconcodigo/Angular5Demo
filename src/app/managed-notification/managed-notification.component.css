@@ -15,7 +15,7 @@
 }
 
 .managed-notification-container__section--navbar {
-    background-color: #E00C0C;
+    background-color: #000000;
 }
 
 .managed-notification-container__section--router-outlet {
@@ -71,5 +71,5 @@
 }
 
 .route-selected {
-    color: #E00C0C;
+    color: #E00C0C !important;
 }

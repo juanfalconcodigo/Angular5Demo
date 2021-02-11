@@ -1,0 +1,49 @@
+<div class="update-managed-notification-container">
+    <h3>Update Billing Rule ?</h3>
+    <h5>* Indicates required field</h5>
+    <div class="update-managed-notification-container__name-description">
+        <div>Rule Name/Description</div>
+        <div>
+            <p>Rule Name:{{dataFake.rule_name}}</p>
+            <p>Rule Description: {{dataFake.description}}</p>
+        </div>
+    </div>
+
+    <div class="update-managed-notification-container__condition">
+        <div>Rule Condition</div>
+        <div>
+            Send notification when new invoice is available online
+        </div>
+    </div>
+
+    <div class="update-managed-notification-container__notification">
+        <div>Notification Address</div>
+        <div>
+            <p>*Select or specify notification address(es) below</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Notification Address Name</th>
+                        <th>E-Mail</th>
+                        <th>Schedule</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="users; else elseBlock">
+                    <tr *ngFor="let user of users;let i=index;">
+                        <td><input type="checkbox" name="userSelected" id="userSelected" [value]="user.id" [(ngModel)]="users[i].checked"> {{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.schedule}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <ng-template #elseBlock>No record found</ng-template>
+
+    <div class="update-managed-notification-container__actions">
+        <button [routerLink]="['../../list']" style="cursor: pointer;background-color: whitesmoke;color: black;outline: none;border: none;">Quit</button>
+        <button (click)="save()" style="cursor: pointer;background-color: black;color: white;outline: none;border: none;">Save</button>
+    </div>
+
+
+</div>

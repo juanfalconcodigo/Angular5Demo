@@ -9,6 +9,25 @@ import { Router } from '@angular/router';
 export class ListRuleManagedNotificationComponent implements OnInit {
   selectRoute: string = null;
 
+  dataFake:any[]=[
+    {
+      rule_type:'Billing',
+      rule_name:'Invoice Notification',
+      rule_description:'Description Test',
+      last_updated:'Undefined',
+      status:'Y',
+      id:123
+    },
+    {
+      rule_type:'Order',
+      rule_name:'Order Notification',
+      rule_description:'Description Test',
+      last_updated:'Undefined',
+      status:'N',
+      id:1234
+    }
+  ]
+
   constructor(private router: Router) { }
 
   ngOnInit() {
