@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { ViewsRoutingModule } from './views-routing.module';
 import { AddressesManagedNotificationViewsComponent } from './views.component';
+import { AddressesManagedNotificationCoreModule } from '../core/core.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ViewsRoutingModule
+    ViewsRoutingModule,
+    AddressesManagedNotificationCoreModule
   ],
   declarations: [AddressesManagedNotificationViewsComponent]
 })

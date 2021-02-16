@@ -1,0 +1,19 @@
+.addresses-notification-container {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+}
+
+.addresses-notification-container__template {
+    border: 1px black solid;
+    margin: 10px 0px;
+}
+
+.addresses-notification-container__actions {
+    margin: 10px 0px;
+}
+
+.addresses-notification-container__actions button {
+    display: inline-block;
+    padding: 10px 15px;
+}
