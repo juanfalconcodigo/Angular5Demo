@@ -90,25 +90,25 @@
                     <label for="type_three">Send E-Mail notification on a detailed schedule</label>
                 </div>
                 <div *ngIf="notificationTypeNotification==='type_three'">
-                    <div>
+                    <div style="display: flex;">
                         <p>From (hh:mm)</p>
                         <p>To (hh:mm)</p>
                     </div>
-                    <div style="display: flex;">
+                    <div style="display: flex;" *ngFor="let day of days;let i=index;">
                         <div style="display: flex;">
-                            <input type="checkbox" name="" id="">
-                            <label for=""></label>
+                            <input [value]="day.value" type="checkbox" [name]="'type_three-day-'+i" [id]="'type_three-day-'+i" [(ngModel)]="day.checked">
+                            <label for="">{{day.day}}</label>
                         </div>
                         <div style="display: flex;">
-                            <input type="text" name="" id="">
-                            <select name="" id="">
+                            <input type="text" [name]="'type_three-fromHour-'+i" [id]="'type_three-fromHour-'+i" [(ngModel)]="day.fromHour">
+                            <select [name]="'type_three-fromAmPm-'+i" [id]="'type_three-fromAmPm-'+i" [(ngModel)]="day.fromAmPm">
                                 <option value="AM">Am</option>
                                 <option value="PM">PM</option>
                             </select>
                         </div>
                         <div style="display: flex;">
-                            <input type="text" name="" id="">
-                            <select name="" id="">
+                            <input type="text" [name]="'type_three-toHour-'+i" [id]="'type_three-toHour-'+i" [(ngModel)]="day.toHour">
+                            <select [name]="'type_three-toAmPm-'+i" [id]="'type_three-toAmPm-'+i" [(ngModel)]="day.toAmPm">
                                 <option value="AM">Am</option>
                                 <option value="PM">PM</option>
                             </select>
@@ -131,4 +131,86 @@
         </form>
     </div>
 
+    <div class="addresses-notification-container__address-list">
+        <div>
+            Notification Address Name
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Notification Address Name</th>
+                        <th>E-Mail</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="users">
+                    <tr *ngFor="let user of users;let i=index;">
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td><span style="cursor: pointer;" (click)="showPopupEditing(user)">🖋</span> <span style="cursor: pointer;" (click)="showPopup(user)">❌</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
 </section>
+
+
+
+<div class="container-popup" [ngClass]="{'show-popup':visible}" *ngIf="userSelected">
+    <div class="popup">
+        <div>
+            <h3>Delete {{userSelected.name}}?</h3>
+            <p>Deleting this address will remove it from all rule(s) A notification cannot be sent for a rule with no address selected</p>
+            <div class="popup__actions">
+                <button (click)="deleteAddress(userSelected)" style="cursor: pointer;background-color: red;color: white;outline: none;border: none;">Delete
+                    Address</button>
+                <button (click)="sendVisible()" style="cursor: pointer;background-color: whitesmoke;color: black;outline: none;border: none;">Cancel</button>
+            </div>
+        </div>
+        <button class="close" (click)="sendVisible()">❌</button>
+    </div>
+</div>
+
+
+<div class="container-popup-editing" [ngClass]="{'show-popup-editing':visiblePopupEditing}" *ngIf="userSelected">
+    <div class="container-popup-editing__content">
+        <div>
+            <h3>Edit Form</h3>
+            <div>
+                <form #myFormEditing="ngForm" (ngSubmit)="editNotification()" autocomplete="off">
+                    <div>
+                        <div>
+                            <label for="editNotificationAddressName">* Notification Address Name:</label>
+                            <input type="text" [(ngModel)]="editNotificationAddressName" id="editNotificationAddressName" name="editNotificationAddressName">
+                        </div>
+                        <div>
+                            <label for="editNotificationAddressEmail">* E-Mail Address:</label>
+                            <input type="text" [(ngModel)]="editNotificationAddressEmail" id="editNotificationAddressEmail" name="editNotificationAddressEmail">
+                        </div>
+                        <div>
+                            <input type="radio" name="edit_type_one" id="edit_type_one" value="type_one" [(ngModel)]="editNotificationTypeNotification">
+                            <label for="edit_type_one">Send E-Mail notification any time</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="edit_type_two" id="edit_type_two" value="type_two" [(ngModel)]="editNotificationTypeNotification">
+                            <label for="edit_type_two">Send E-Mail notification during my work hours</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="edit_type_three" id="edit_type_three" value="type_three" [(ngModel)]="editNotificationTypeNotification">
+                            <label for="edit_type_three">Send E-Mail notification on a detailed schedule</label>
+                        </div>
+                    </div>
+                    <div class="container-popup-editing__actions">
+                        <button type="submit" style="cursor: pointer;background-color: red;color: white;outline: none;border: none;">Save changes
+                            Address</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <button class="close" (click)="closePopupEditing()">❌</button>
+    </div>
+</div>
