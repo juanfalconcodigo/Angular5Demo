@@ -5,3 +5,18 @@
 
     <button type="submit">Send</button>
 </form>
+<div>
+    <div>
+        <input type="checkbox" name="level_1" id="level_1" [(ngModel)]="dataFake[0].checked" (change)="changeCheckbox($event,dataFake[0].checked)" [checked]="dataFake[0].checked">
+        <label for="level_1">Level 1</label>
+    </div>
+    <div>
+        <input type="checkbox" name="level_2" id="level_2" [(ngModel)]="dataFake[1].checked" (change)="changeCheckbox($event,dataFake[1].checked)" [checked]="dataFake[1].checked">
+        <label for="level_2">Level 2</label>
+    </div>
+    <div>
+        <input type="checkbox" name="level_3" id="level_3" [(ngModel)]="dataFake[2].checked" (change)="changeCheckbox($event,dataFake[2].checked)" [checked]="dataFake[2].checked">
+        <label for="level_3">Level 3</label>
+    </div>
+    <button (click)="sendDataLevel()">Enviar</button>
+</div>
