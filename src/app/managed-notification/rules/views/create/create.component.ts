@@ -40,6 +40,46 @@ export class CreateRuleManagedNotificationComponent implements OnInit {
   }
 
   ngOnInit() {
+    let me = this;
+    const arrayFake = [
+      {
+        name: "Wendy Mendez",
+        value: "wendy.mendez@example.com"
+      },
+      {
+        name: "Clara Larson",
+        value: "clara.larson@example.com"
+      }
+
+    ]
+    arrayFake.map((e) => me.addToSelectedContacts(e));
+  }
+  public changeTemplate(rule_template: string) {
+    console.log(rule_template);
+    const newUsers = [
+      {
+        name: 'test1',
+        value: 'test2'
+      },
+      {
+        name: 'test3',
+        value: 'test4'
+      },
+      {
+        name: 'test5',
+        value: 'test6'
+      }
+    ]
+    this.contacts = rule_template === 'product' ? sampleContacts : newUsers;
+    // To start with, all of the contacts will be unselected. Then, the user will be
+    // able to move any of the contacts over to the selected collection.
+    this.unselectedContacts = this.contacts.slice().sort(this.sortContactOperator);
+    this.selectedContacts = [];
+
+    // I am an ID-based look-up index that keeps track of which contacts have been
+    // selected for pending changes (either adding or removing from the selected
+    // contacts collection).
+    this.pendingSelection = Object.create(null);
   }
 
   public addToSelectedContacts(contact?: Contact): void {
@@ -99,7 +139,7 @@ export class CreateRuleManagedNotificationComponent implements OnInit {
 
   public togglePendingSelection(contact: Contact): void {
 
-    this.pendingSelection[contact.id] = !this.pendingSelection[contact.id];
+    this.pendingSelection[contact.name] = !this.pendingSelection[contact.name];
 
   }
 
@@ -109,7 +149,7 @@ export class CreateRuleManagedNotificationComponent implements OnInit {
     var selectionFromCollection = collection.filter(
       (contact) => {
 
-        return (contact.id in this.pendingSelection);
+        return (contact.name in this.pendingSelection);
 
       }
     );

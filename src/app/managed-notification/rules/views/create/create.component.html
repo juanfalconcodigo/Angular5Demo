@@ -6,7 +6,7 @@
     <h5>Select a template to define an order rule</h5>
     <div class="create-managed-notification-container__template">
         <label for="template">* Rule Template :</label>
-        <select name="template" [(ngModel)]="rule_template" id="template">
+        <select name="template" [(ngModel)]="rule_template" id="template" (change)="changeTemplate(rule_template)">
             <option value="product">Products</option>
             <option value="solution">Solutions</option>
         </select>
@@ -64,14 +64,14 @@
                     <div class="dual-select__left">
 
                         <ul class="dual-select__items">
-                            <li *ngFor="let contact of unselectedContacts" (click)="togglePendingSelection( contact )" (dblclick)="addToSelectedContacts( contact )" class="dual-select__item" [class.dual-select__item--selected]="pendingSelection[ contact.id ]">
+                            <li *ngFor="let contact of unselectedContacts" (click)="togglePendingSelection( contact )" (dblclick)="addToSelectedContacts( contact )" class="dual-select__item" [class.dual-select__item--selected]="pendingSelection[ contact.name ]">
 
                                 <div class="contact">
                                     <div class="contact__name">
                                         {{ contact.name }}
                                     </div>
                                     <div class="contact__email">
-                                        {{ contact.email }}
+                                        {{ contact.value }}
                                     </div>
                                 </div>
 
@@ -90,14 +90,14 @@
                     <div class="dual-select__right">
 
                         <ul class="dual-select__items">
-                            <li *ngFor="let contact of selectedContacts" (click)="togglePendingSelection( contact )" (dblclick)="removeFromSelectedContacts( contact )" class="dual-select__item dual-select__item--new" [class.dual-select__item--selected]="pendingSelection[ contact.id ]">
+                            <li *ngFor="let contact of selectedContacts" (click)="togglePendingSelection( contact )" (dblclick)="removeFromSelectedContacts( contact )" class="dual-select__item dual-select__item--new" [class.dual-select__item--selected]="pendingSelection[ contact.name ]">
 
                                 <div class="contact">
                                     <div class="contact__name">
                                         {{ contact.name }}
                                     </div>
                                     <div class="contact__email">
-                                        {{ contact.email }}
+                                        {{ contact.value }}
                                     </div>
                                 </div>
 
